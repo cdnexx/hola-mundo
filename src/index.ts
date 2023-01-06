@@ -1,9 +1,52 @@
-let mensaje: string = "Hola mundo!"
+let extincionDino = 76_000_000
+let dinoFav = "Velociraptor"
+let extinto = true
 
-mensaje = "Franco Osorio"
+function primera(config:string){
+    return config
+}
 
-console.log(mensaje)
+console.log(primera(dinoFav))
 
-mensaje = "adios! new branch"
+let animales: string[] = ["perro", "gato", "hamster"]
+let nums: number[] = [1,2,3]
+let nums2: Array<number> = []
 
-console.log(mensaje)
+// animales.map(x => x.)
+
+let tupla: [number, string] = [1, "Franco Osorio"]
+
+enum Talla { Chica, Mediana, Grande, ExtraGrande }
+
+console.log(Talla.ExtraGrande)
+
+const enum LoadingState { Idle, Loading, Succes, Error }
+
+const estado = LoadingState.Succes
+
+type Direccion = {
+    ciudad: string,
+    calle: string,
+    numero: number
+}
+
+type Persona = {
+    readonly id: number,
+    nombre: string,
+    talla: Talla,
+    direccion: Direccion
+}
+
+const objeto: Persona = { 
+    id: 1, 
+    nombre: "Hola objeto", 
+    talla: Talla.Mediana,
+    direccion: {
+        ciudad: "Santiago",
+        calle: "Ángel Pimentel",
+        numero: 0960
+    }
+}
+
+const arr: Persona[] = []
+
