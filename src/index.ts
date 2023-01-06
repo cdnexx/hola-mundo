@@ -1,5 +1,5 @@
 let extincionDino = 76_000_000
-let dinoFav = "Velociraptor"
+let dinoFav = 'Velociraptor'
 let extinto = true
 
 function primera(config:string){
@@ -8,13 +8,13 @@ function primera(config:string){
 
 console.log(primera(dinoFav))
 
-let animales: string[] = ["perro", "gato", "hamster"]
+let animales: string[] = ['perro', 'gato', 'hamster']
 let nums: number[] = [1,2,3]
 let nums2: Array<number> = []
 
 // animales.map(x => x.)
 
-let tupla: [number, string] = [1, "Franco Osorio"]
+let tupla: [number, string] = [1, 'Franco Osorio']
 
 enum Talla { Chica, Mediana, Grande, ExtraGrande }
 
@@ -39,14 +39,157 @@ type Persona = {
 
 const objeto: Persona = { 
     id: 1, 
-    nombre: "Hola objeto", 
+    nombre: 'Hola objeto', 
     talla: Talla.Mediana,
     direccion: {
-        ciudad: "Santiago",
-        calle: "Ángel Pimentel",
-        numero: 0960
+        ciudad: 'Santiago',
+        calle: 'Ángel Pimentel',
+        numero: 960
     }
 }
 
 const arr: Persona[] = []
+
+const fn: (a: number) => string = (edad: number) => {
+    if (edad > 17){
+        return 'Puedes ingresar'
+    } else {
+        return 'No puedes ingresar'
+    }
+}
+
+function validarEdad(edad: number, msg = 'master'): string{
+    if (edad > 17){
+        return `Puedes ingresar ${msg}`
+    } else {
+        return 'No puedes ingresar'
+    }
+}
+
+console.log(validarEdad(18, 'crack'))
+
+
+// Union types 
+let puntaje: number | string = 98 
+puntaje = 'Puntaje!'
+
+
+type Animal = {
+    id: number,
+    especie: string
+}
+
+type Usuario = {
+    id: number,
+    name: string
+}
+
+let animal: Usuario | Animal = { id: 1, especie:'', name: '' }
+
+function sumaDos(n: number | string): number {
+    if(typeof n === 'number'){
+        return n + 2
+    }
+    return parseInt(n) + 2
+}
+
+console.log(sumaDos(3))
+console.log(sumaDos('2'))
+
+// Intersection type
+
+type Audit = {
+    created_at: string,
+    modified_at: string
+}
+
+type Product = {
+    name: string
+}
+
+const product: Audit & Product = {
+    created_at: '',
+    modified_at: '',
+    name: ''
+}
+
+// Literal types
+
+const nDeFibo: 0 | 1 | 2 | 3 | 5 = 3
+
+type Fibo = 0 | 1 | 2 | 3 | 5 //Lo mismo que lo anterior pero más legible
+const nDeFibo2: Fibo = 3
+
+// Nullable types
+
+function toNumber(s: string | null | undefined) {
+    if (!s) {
+        return 0
+    }
+    return parseInt(s)
+}
+
+const n = toNumber(undefined)
+
+// Optional chaining
+
+function getUser(id: number){
+    if (id < 0) {
+        return null
+    }
+    return {
+        id: 1,
+        name: 'Felipe',
+        created_at: new Date()
+    }
+}
+
+const user = getUser(-1)
+console.log('Usuario:',user?.created_at) // El operador '?' permite acceder a propiedades de objetos que posiblemente pueden ser null o undefined
+
+const user2 = getUser(5)
+console.log('Usuario 2:', user2?.created_at)
+
+const arr1 = null
+console.log(arr1?.[0])
+
+const fn5:any = null
+fn5?.() // Llama a la función solamente si es que está definida
+
+// Nulling coalescing operator
+
+const difficulty: number | null = null
+
+const user3 = {
+    username: 'cdnex',
+    difficulty: difficulty ?? 1 // Si es que difficulty es nulo, asignará el valor de 1
+}
+
+console.log(user3)
+
+// Type assertion
+
+const elem: any = null
+const elem1 = elem as number // Fuerza al programa a tratar un elemento como un cierto tipo de dato
+
+// const input = document.getElementById('username') as HTMLInputElement
+//const input2 = <HTMLInputElement> document.getElementById('username') // Lo mismo que la linea anterior
+
+// Type unknown
+
+function procesa(algo: unknown) {
+    if (typeof algo === 'string'){
+        return algo.toUpperCase()
+    }
+
+    if (typeof algo === 'number') {
+        return algo.toString()
+    }
+
+    if (algo instanceof String) { // String es solo un ejemplo, puede ser cualquier objeto
+        return "Hola"
+    }
+    return "chao"
+}
+
 
