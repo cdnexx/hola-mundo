@@ -40,7 +40,7 @@ class Perro implements Animal {
 
 class DiccionarioUsuarios {
     [id: string]: string
-}
+} 
 
 let diccionarioUs = new DiccionarioUsuarios()
 

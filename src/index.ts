@@ -221,7 +221,7 @@ class Personaje {
         this.nivel = nivel
         this._hp = _hp
     }
-
+ 
     subirNivel(): number {
         this.nivel += 1
         return this.nivel
